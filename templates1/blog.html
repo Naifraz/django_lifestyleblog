@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}{% endblock %}
+
+
+
+
+    {% block content %}
+          <!-- SHARE HEAD SECTION -->
+  <section id="share-head-section" class="bg-primary py-3 text-center container">
+    <div class="container">
+      <h3 class="display-4">Share</h3>
+
+      <a href="#" class="btn btn-outline-light">Find Out More</a>
+    </div>
+  </section>
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-8">
+            <div class="row mb-5">
+              {% for p in post%}
+                  <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <a href="{%url 'blog2' id=p.id %}"><img src="{{ p.image.url }}" alt="Image" class="img-fluid"></a>
+                  <h2 class="font-size-regular"><a href="#">{{ p.title }}</a></h2>
+                  <div class="meta mb-4">{{ p.article_author }} <span class="mx-2">&bullet;</span> {{ p.posted_on}}
+                      <span class="mx-2">&bullet;</span> <a href="{% url 'topic' name=p.category.name%}">{{ p.category }}</a></div>
+                  <p>{{ p.introduction }}</p>
+                     <a href="#">Read more</a>
+                </div>
+              </div>
+                {% endfor %}
+                 <div class="container-fluid">
+    <div class="pagination">
+    <span class="step-links">
+        {% if post.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ post.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post.number }} of {{ post.paginator.num_pages }}.
+        </span>
+
+        {% if post.has_next %}
+            <a href="?page={{ post.next_page_number }}">next</a>
+            <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+
+</div>
+    </div>
+
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="custom-pagination text-center">
+                  <span>1</span>
+                  <a href="#">2</a>
+                  <a href="#">3</a>
+                  <span class="more-page">...</span>
+                  <a href="#">10</a>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 ml-auto">
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Search</h3>
+              <form action="#" method="get">
+                <div class="form-group d-flex">
+                  <input type="text" name="q" class="form-control" placeholder="Search keyword and hit enter..." value="{{ request.GET.q }}" >
+                </div>
+              </form>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Popular Posts</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li class="mb-2"><a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                <li class="mb-2"><a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                <li class="mb-2"><a href="#">Natus eligendi nobis</a></li>
+              </ul>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Recent Comments</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Natus eligendi nobis</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+{% endblock %}
+{% block script %} {% endblock %}
+
+
+

@@ -1,0 +1,133 @@
+	 {% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}{% endblock %}
+
+
+
+
+    {% block content %}
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-8">
+            <div class="row mb-5">
+              <div class="col-md-12 col-lg-12 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+                  </div> 
+              </div>
+              
+              <div class="col-md-12 col-lg-12 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <h2 class="font-size-regular"><a href="#">{{ post.title }}</a></h2>
+                  <div class="meta mb-4">{{ post.article_author.name.get_full_name }} <span class="mx-2">&bullet;</span>
+				  Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
+                  <p>{{ post.body }}</p>
+				 
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="custom-pagination text-center">
+             <a href="{% url 'blog2' id=post.id|add:'-1' %}" ><span> Prev</span></a>
+             <a href="{% url 'blog2' id=post.id|add:'1' %}"><span>Next </span></a>
+                    <a href="{% url 'blog2' id=3 %}"><span>3 </span></a>
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class="col-md-3 ml-auto">
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Search</h3>
+              <form action="#" method="post">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                </div>
+              </form>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Popular Posts</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li class="mb-2"><a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                <li class="mb-2"><a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                <li class="mb-2"><a href="#">Natus eligendi nobis</a></li>
+              </ul>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Recent Comments</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Natus eligendi nobis</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+          <div class="container">
+     <h4 class="well"> Related article</h4>
+          <div class="row">
+         {%  for r in related %}
+              <div class="col-md-3">
+              <figure class="animate-box">
+
+					 <a href="{% url 'blog2' id=r.id %}"> <img src="{{ r.image.url }}" alt="Image" class="img-fluid">  </a>
+                  <h2 class="fh5co-article-title animate-box">{{  r.title }}</h2>
+                  <p>{{ r.body|truncatewords:15 }}</p>
+				</figure>
+              </div>
+          {% endfor %}
+          </div>
+           <div class="container">
+    <h3 class="card-header">Comments</h3>
+    <div class="single_post_comment">
+        {% for comment in comment %}
+            <div class="single_comment">
+               <h4>{{ comment.name }}</h4>
+                <p>{{ comment.post_comment }}</p>
+            </div>
+            {% empty %}
+            <h3>Sorry no comment found</h3>
+        {% endfor %}
+
+    </div>
+
+
+
+          <div class="bg-light">
+          <div class="card-header">
+            <h3 class="card-title">Comment</h3>
+          </div>
+          <div class="card-body">
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button class="btn btn-primary">Comment</button>
+              </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+{% endblock %}
+{% block script %} {% endblock %}
+
+
+

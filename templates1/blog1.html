@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}{% endblock %}
+
+
+
+
+    {% block content %}
+
+	  <!-- SHARE HEAD SECTION -->
+  <section id="share-head-section" class=" py-3 text-center container">
+    <div class="container">
+      <h3 class="display-4">WEIGHT LOSS</h3>
+      <h5>Find the best weight loss tips and advice from the experts at Skinny Ms.</h5>
+
+       <h5>Our weight loss plans are designed to keep you motivated, eating well and meeting 
+        your fitness goals so you can keep the weight off for a lifetime.</h5>
+
+       <h5>Don’t know where to start? Browse hundreds of our weight loss
+        posts below or Try our 14 Day Low-Calorie Weight Loss Menu.</h5>>
+   
+    </div>
+  </section>
+
+  
+
+   
+    
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-8">
+            <div class="row mb-5">
+                {% for p in post %}
+              <div class="col-md-4 col-lg-4 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <img src="{{ p.image.url }}" alt="Image" class="img-fluid">
+                  </div>
+              </div>
+              
+              <div class="col-md-8 col-lg-8 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <h2 class="font-size-regular"><a href="#">{{ p.title }}</a></h2>
+                  <p>{{ p.introduction }}</p>
+				  <div class="meta mb-4">{{ p.article_author }} <span class="mx-2">&bullet;</span>
+				  {{ p.posted_on }}<span class="mx-2">&bullet;</span> <a href="#">{{ p.category }}</a></div>
+                     <a href="#">Read more</a>
+                </div>
+              </div>
+                 {% endfor %}
+
+     </div>
+              
+
+              
+
+
+              
+
+
+              <div class="row">
+              <div class="col-12">
+                <div class="custom-pagination text-center">
+                  <span>1</span>
+                  <a href="#">2</a>
+                  <a href="#">3</a>
+                  <span class="more-page">...</span>
+                  <a href="#">10</a>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 ml-auto">
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Search</h3>
+              <form action="#" method="post">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                </div>
+              </form>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Popular Posts</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li class="mb-2"><a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                <li class="mb-2"><a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                <li class="mb-2"><a href="#">Natus eligendi nobis</a></li>
+              </ul>
+            </div>
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Recent Comments</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Quaerat rerum voluptatibus veritatis</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Maiores sapiente veritatis reprehenderit</a></li>
+                <li class="mb-2"><a href="#">Joefrey</a> <em>in</em> <a href="#">Natus eligendi nobis</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+ {% endblock %}
+{% block script %} {% endblock %}

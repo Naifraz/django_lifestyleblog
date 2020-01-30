@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}{% endblock %}
+
+
+
+
+    {% block content %}
+
+	  <!-- SHARE HEAD SECTION -->
+  <section id="share-head-section" class=" py-3 text-center container">
+    <div class="container">
+      <h3 class="display-4">WEIGHT LOSS</h3>
+      <h5>Serch result are.</h5>
+
+    </div>
+  </section>
+
+  
+
+   
+    
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-8">
+            <div class="row mb-5">
+            <div>
+              {% if message %}
+                  <ul class="message">
+                  {% for k in message %}
+                      {{ k }}
+                  {% endfor %}
+                  </ul>
+
+              {% endif %}
+
+               {% if sr%}
+                   {% for p in sr %}
+              <div class="col-md-4 col-lg-4 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <img src="{{ p.image.url }}" alt="Image" class="img-fluid">
+                  </div>
+              </div>
+              
+              <div class="col-md-8 col-lg-8 mb-4 mb-lg-4">
+                <div class="h-entry">
+                  <h2 class="font-size-regular"><a href="#">{{ p.title }}</a></h2>
+                  <p>{{ p.introduction }}</p>
+				  <div class="meta mb-4">{{ p.article_author }} <span class="mx-2">&bullet;</span>
+				  {{ p.posted_on }}<span class="mx-2">&bullet;</span> <a href="#">{{ p.category }}</a></div>
+                     <a href="#">Read more</a>
+                </div>
+              </div>
+                 {% endfor %}
+            {% endif %}
+
+     </div>
+              
+
+              
+
+
+              
+
+
+              <div class="row">
+              <div class="col-12">
+                <div class="custom-pagination text-center">
+                  <span>1</span>
+                  <a href="#">2</a>
+                  <a href="#">3</a>
+                  <span class="more-page">...</span>
+                  <a href="#">10</a>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+
+
+ {% endblock %}
+{% block script %} {% endblock %}
+
